@@ -1,0 +1,112 @@
+body {
+	background-color:rgb(191, 255, 0);
+}
+.button {
+    
+    border: none;
+    color: black;
+    padding: 4px 20px 4px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+	text-decoration:none; 
+	color:black;
+	
+}
+.button1 {
+	border-radius: 8px;
+	background-color: transparent;
+	border: 2px groove silver;
+	text-decoration:none; 
+	color:black;
+}
+.button2 {
+	border-radius: 8px;
+	background-color: #6495ED;
+	text-decoration:none; 
+	color:black;
+}
+.button3 {
+	border-radius: 8px;
+	background-color: #4CAF50; /* Green */
+	text-decoration:none; 
+	color:black;
+}
+
+#container {
+	width:400px; 
+	height:600px; 
+	background-color:transparent; 
+	margin-top:30px;
+	margin-bottom:auto;
+	margin-left:center;
+	border:5px groove rgb(175, 223, 32);
+	float:left;
+	background-color:white;
+	overflow:scroll;
+}
+#user {
+	 width:250px;
+	 height:20px;
+	 border:1px black solid;
+}
+#pword {
+	width:250px;
+	height:20px;
+	border:1px black solid;
+}
+#box {
+	margin-top:10px; 
+	margin-left:50px;
+}
+#integ {
+	width:300px;
+	 height:20px; 
+	 margin-top:40px;
+	 background-color:#4CAF50;
+	 color:white;
+	 text-align:center;
+	 border-bottom:1px black solid;
+	 border-top:1px black solid;
+}
+marquee {
+	text-shadow:5px green; 
+	font-size:20px; 
+	color:SeaGreen ;
+}
+#setInput {
+	width:250px; 
+	height:20px; 
+	border:1px black solid;
+}
+#setInt {
+	 width:300px;
+	 height:20px; 
+	 margin-top:40px;
+	 background-color:#6495ED;
+	 color:white;
+	 text-align:center;
+	 border-bottom:1px black solid;
+	 border-top:1px black solid;
+}
+#reqInt {
+	 width:300px;
+	 height:20px; 
+	 margin-top:40px;
+	 background-color:#4CAF50;
+	 color:white;
+	 text-align:center;
+	 border-bottom:1px black solid;
+	 border-top:1px black solid;
+}
+
+table, th, td {
+    
+    padding: 4px;
+}
+table {
+    border-spacing: 10px;
+}

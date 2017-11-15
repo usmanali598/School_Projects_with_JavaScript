@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />-->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-
+1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-
+1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-
+1.4.5.min.js"></script>
+    <link rel="stylesheet" href="css/themes/a.css" />
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+    <script src="js/jquery.js"></script>
+    <script src="jquery-ui.js"></script>
+    <link href="jquery-ui.css" rel="stylesheet">
+    <title>Mobile Project</title>
+    <style type="text/css">
+        .content {
+            width: 100%;
+            height: 50vh;
+            background: transparent;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div data-role="page" data-theme="a" id="main">
+        <div data-role="header">
+            <h1>Planning App</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <ul data-role="listview">
+                <li><a href="#calendar">Calendar</a></li>
+                <li><a href="#weather">Weather</a></li>
+                <li><a href="#form">ToDoList</a></li>
+                <li><a href="#expense">Add Expenses</a></li>
+            </ul>
+        </div>
+        <div data-role="footer">
+            <h1>Welcome</h1>
+        </div>
+    </div>
+
+    <div data-role="page" id="calendar">
+        <div data-role="header"><a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext">Icon only</a>
+            <h1>Calendar</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <div id="datepicker"></div>
+        </div>
+
+    </div>
+
+    <div data-role="page" data-theme="a" id="weather">
+        <div data-role="header"><a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext">Icon only</a>
+            <h1>Weather</h1>
+        </div>
+        <img id="cld" />
+        <div width="auto 100%" height="auto 100%"></div>
+        <div class="content">
+        </div>
+        <p id="broke"></p><span id="try" style="font-size:25px;"></span>
+        <p id="wind"></p>
+        <p id="try1"></p>
+        <p id="try2"></p>
+        <p id="clouds"></p>
+        <p id="try3"></p>
+        <p id="try4"></p>
+    </div>
+
+    <div data-role="page" data-theme="a" id="form">
+        <div data-role="header"><a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext">Icon only</a>
+            <h1>ToDoList</h1>
+        </div>
+        <div role="main" class="ui-content">
+            </article>
+            <div id="container">
+                <ol data-role="listview" id="theList" contenteditable="true">
+                    <li>What is the plan today :)</li>
+                </ol>
+                <p><a href=javascript:void(); class="ui-btn ui-btn-inline" id="saveAll">Save All</a> &bull; <a href=javascript:void();
+                        class="ui-btn ui-btn-inline" id="clearAll">Clear All</a></p>
+            </div>
+            </article>
+        </div>
+    </div>
+
+    <div data-role="page" data-theme="a" id="expense">
+        <div data-role="header"><a href="#main" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-notext">Icon only</a>
+            <h1>Add Expenses</h1>
+        </div>
+        <label for="number-pattern">Expenses:</label>
+        <input type="number" class='input'>
+        <button data-inline="true">Press</button> to add <span class='display'></span>
+        <br>
+        <button class="clear ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-left">Clear</button>
+        <hr> Total: <span class='total'></span
+		</div>
+ 
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+
+        $( document ).on( "pagecreate", function ()
+        {
+            $( document ).on( "pagecontainershow", function ()
+            {
+                $( ".ui-content" ).height( getRealContentHeight() );
+            } )
+
+            $( window ).on( "resize orientationchange", function ()
+            {
+                $( ".ui-content" ).height( getRealContentHeight() );
+            } )
+
+            function getRealContentHeight()
+            {
+                var activePage = $.mobile.pageContainer.pagecontainer( "getActivePage" ),
+                    screen = $.mobile.getScreenHeight(),
+                    header = $( ".ui-header" ).hasClass( "ui-header-fixed" ) ? $( ".ui-header" ).outerHeight() - 1 : $( ".ui-header" ).outerHeight(),
+                    footer = $( ".ui-footer" ).hasClass( "ui-footer-fixed" ) ? $( ".ui-footer" ).outerHeight() - 1 : $( ".ui-footer" ).outerHeight(),
+                    contentMargins = $( ".ui-content", activePage ).outerHeight() - $( ".ui-content", activePage ).height();
+                var contentHeight = screen - header - footer - contentMargins;
+
+                return contentHeight;
+            }
+        } );
+        app.initialize();
+
+        $( document ).ready( function ()
+        {
+
+            $( "#datepicker" ).datepicker();
+        } );
+
+        $( document ).ready( function ()
+        {
+            var theList = document.getElementById( 'theList' );
+            $( "#saveAll" ).click( function ( e )
+            {
+                e.preventDefault();
+                localStorage.setItem( 'todoList', theList.innerHTML );
+            } );
+            $( "#clearAll" ).click( function ( e )
+            {
+                e.preventDefault();
+                localStorage.clear();
+                location.reload();
+            } );
+
+            loadToDo();
+
+            function loadToDo()
+            {
+                if ( localStorage.getItem( 'todoList' ) )
+                {
+                    theList.innerHTML = localStorage.getItem( 'todoList' );
+                }
+            }
+
+            $( function ()
+            {
+                let val = 0
+                let input = $( '.input' )[ 0 ]
+                $( '.input' ).on( 'keyup', function ( e )
+                {
+                    e.target.value.length < 1 ?
+                        $( '.display' ).text( 'something' ) :
+                        $( '.display' ).text( e.target.value )
+                } )
+
+                $( 'button' ).on( 'click', function ()
+                {
+                    if ( input.value.length < 1 )
+                    {
+                        input.value = 0
+                    }
+                    val += parseFloat( input.value )
+                    $( '.total' ).text( val )
+                    input.value = ''
+                } )
+
+                $( '.clear' ).on( 'click', function ()
+                {
+                    val = 0
+                    $( '.total' ).text( val )
+
+                } )
+            }() )
+        } );
+
+        document.addEventListener( "deviceready", onDeviceReady, false );
+
+        function onDeviceReady()
+        {
+            function showPosition( position )
+            {
+                getWeatherData( position )
+            }
+            const getLatLong = navigator.geolocation.getCurrentPosition( showPosition );
+
+        }
+        function getWeatherData( pos )
+        {
+            const latitude = pos.coords.latitude
+            const longitude = pos.coords.longitude
+            const OpenWeatherAppKey = "509be5aa136b977116c175d7f802e307";
+            const queryString = 'http://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&appid=509be5aa136b977116c175d7f802e307&units=imperial';
+            const getWeather = fetch( queryString )
+            //const icon = wd.weather[0].icon;
+            getWeather
+                .then( data => data.json() )
+                .then( response =>
+                {
+                    const iconSrc = "http://api.openweathermap.org/img/w/" + response.weather[ 0 ].icon; +".png";
+                    $( '.content' ).append( "<h1>" + response.name + "</h1>" + "<h1>" + '<img src="' + iconSrc + '">' + Math.round(( response.main.temp - 32 ) * ( 5 / 9 ) ) + " °C</h1>" + "<h4>" + response.wind.speed + " Speed</h4>" + "<h4>Outside Situation:" + response.weather[ 0 ].main + "</h4>" )
+
+                } )
+        }
+
+    </script>
+</body>
+
+</html>

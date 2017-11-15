@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+  	<!--meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' ws://192.168.1.123:3000 http://code.jquery.com https://code.jquery.com  https://ssl.gstatic.com gap: data: blob: filesystem: ; " /-->
+    <link rel="stylesheet"  href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	  <script src="https://code.jquery.com/jquery-2.1.4.js" integrity="sha256-siFczlgw4jULnUICcdm9gjQPZkw/YPDqhQ9+nAOScE4=" crossorigin="anonymous"></script>
+  	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	  <link rel="stylesheet" type="text/css" href="css/index.css" />
+  
+	  <title>Mobiiliohjelmointi</title>
+</head>
+
+<body>	
+	
+	<div data-role="popup" id="popupMenu" data-transition="pop" data-theme="a">
+		<a href="#" data-rel="back" class="ui-btn ui-btn-inline ui-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right">Sulje</a>
+
+		<ul data-role="listview">
+			<li><a href="#home" class="ui-btn">Home</a></li>
+			<li><a href="#camPage" class="ui-btn">Camera</a></li>
+			<li><a href="#weatherPage"  class="ui-btn">Weather</a></li>
+			<li><a href="#distPage" class="ui-btn">Distance</a></li>
+			<li><a href="#lunchPage" class="ui-btn">Lunch</a></li>
+		</ul>
+	</div>
+	
+	<!-- Vain dynaamiset header ja footer ominaisuudella data-position="fixed" pysyvät paikallaan vilkkumatta, kun sivua vaihdetaan -->
+	<div data-role="header" data-theme="a" data-position="fixed">
+		<h1></h1>
+		
+	 	<a href="#popupMenu" data-rel="popup" data-transition="flip" class="ui-btn ui-btn-inline  ui-corner-all ui-icon-bars ui-btn-icon-notext">Menu</a>
+	 	
+		<div data-role="navbar" id="navi">
+			<ul>
+				<li><a href="#home" class="ui-btn ui-icon-home ui-btn-icon-top  ui-mini">Home</a></li>
+				<li><a href="#camPage" class="ui-btn ui-icon-camera ui-btn-icon-top ui-mini">Camera</a></li>
+				<li><a href="#weatherPage"  class="ui-btn ui-icon-calendar ui-btn-icon-top ui-mini">Weather</a></li>
+				<li><a href="#distPage" class="ui-btn ui-icon-gear ui-btn-icon-top ui-mini">Distance</a></li>
+				<li><a href="#lunchPage" class="ui-btn ui-icon-bullets ui-btn-icon-top ui-mini">Lunch</a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div data-role="footer" data-theme="b" data-position="fixed">
+		<h4>Mobiiliohjelmointi</h4>
+	</div>
+		 
+	<div data-role="page" id="home" data-title="Home">
+	
+	    <div role="main" class="ui-content ui-body-a">
+            <h1>Nearby Restaurants</h1><br><br>
+            <p id="place"></p>
+            <p id="place1"></p>
+            <p id="place2"></p>
+            <p id="place3"></p>
+	    </div> <!-- /content -->
+	
+    </div> <!-- /page -->
+	
+	<div data-role="page" id="camPage" data-title="Camera">
+  
+	    <div role="main" class="ui-content ui-body-a">
+	<button id="camBtn" class="ui-btn ui-btn-inline ui-icon-camera ui-btn-icon-left" >Camera</button>
+          <br>  <img id="pic" width="200px" height="200px" src="" >
+	    </div> <!-- /content -->
+		
+    </div> <!-- /page -->
+	
+	<div data-role="page" id="weatherPage" data-title="Weather">
+  
+	    <div role="main" class="ui-content ui-body-a">
+            <h1 id="hed"></h1>
+            <img id="cld" />
+            <div id="weather" width="auto 100%" height="auto 100%"></div>
+            <p id="broke"></p><span id="try" style="font-size:25px;"></span>
+            <p id="wind"></p> 
+            <p id="try1"></p>
+            <p id="try2"></p>
+			<p id="clouds"></p>
+            <p id="try3"></p>
+            <p id="try4"></p>
+	    </div><!-- /content -->
+
+    </div> <!-- /page -->
+	
+	<div data-role="page" id="distPage" data-title="Distance">
+  
+	    <div role="main" class="ui-content ui-body-a">
+
+            From:
+            <input name="text-basic" id="from" value="" type="text">
+        
+            <p>To:</p>
+            <input name="text-basic" id="to" value="" type="text">
+            
+            <button class="ui-btn ui-btn-inline" onclick="fetchDistance()">Get</button>
+        <p id="txe"></p>
+	    </div> <!-- /content -->
+
+    </div> <!-- /page -->
+	
+	<div data-role="page" id="lunchPage" data-title="Lunch">
+
+  
+	    <div role="main" class="ui-content ui-body-a">
+            <h1> Lunch </h1>
+            <p id="lunch1"></p>
+	    </div> <!-- /content -->
+
+    </div> <!-- /page -->
+		
+
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+
+		$(document).one("pagebeforecreate", function () {
+	
+			$( "[data-role='header']" ).enhanceWithin().toolbar(); // Koska on sisältöä
+			$( "[data-role='footer']" ).toolbar();  // WP ei osaa asettaa oikein
+		
+			$("#popupMenu").enhanceWithin().popup(); // Koska on sisältöä	
+		});
+		
+		
+		$(document).on("pagecreate", function() {
+
+			$(document).on("pagecontainershow", function(){
+				$(".ui-content").height(getRealContentHeight());
+			})
+
+			$(window).on("resize orientationchange", function(){
+				$(".ui-content").height(getRealContentHeight());
+			})
+			
+			function getRealContentHeight() {
+				var activePage = $.mobile.pageContainer.pagecontainer("getActivePage"),
+					screen = $.mobile.getScreenHeight(),
+					header = $(".ui-header").hasClass("ui-header-fixed") ? $(".ui-header").outerHeight() - 1 : $(".ui-header").outerHeight(),
+					footer = $(".ui-footer").hasClass("ui-footer-fixed") ? $(".ui-footer").outerHeight() - 1 : $(".ui-footer").outerHeight(),
+					contentMargins = $(".ui-content", activePage).outerHeight() - $(".ui-content", activePage).height();
+				
+				var contentHeight = screen - header - footer - contentMargins;	
+				
+				return contentHeight;
+			}
+			
+			$( document ).on("pagecontainerchange", function() {
+				navi();
+			});
+			
+			$("div.ui-page").on("swipeleft", function(event){
+				if(event.handled !== true) {
+					var nextpage = $(this).next("div[data-role='page']");;
+					
+					if (nextpage.length == 0) {
+						nextpage = $("div[data-role='page']:first");
+					}
+			
+					$.mobile.pageContainer.pagecontainer ("change", nextpage);
+					event.handled = true;
+					navi();
+				}
+				return false;
+			});
+			
+			$("div.ui-page").on("swiperight", function(event){
+				if(event.handled !== true) {
+					var prevpage = $(this).prev("div[data-role='page']");
+
+					if (prevpage.length == 0) {
+						prevpage = $("div[data-role='page']:last");
+					}
+					
+					$.mobile.pageContainer.pagecontainer ("change", prevpage);
+					event.handled = true;
+					navi();
+				}
+				return false;
+			});
+			
+			function navi() {
+				// attribute data-title
+				var current = $( ".ui-page-active" ).jqmData( "title" );
+				
+				$( "[data-role='header'] h1" ).text( current );
+				
+				$( "[data-role='navbar'] a.ui-btn-active" ).removeClass( "ui-btn-active" );
+				
+				$( "[data-role='navbar'] a" ).each(function() {
+					if ( $( this ).text() === current ) {
+						$( this ).addClass( "ui-btn-active" );
+					}
+				});
+			}
+		});      
+
+	        document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+            console.log("navigator.geolocation works well");
+        }
+
+        // onSuccess Callback
+        // This method accepts a Position object, which contains the
+        // current GPS coordinates
+        //
+        var onSuccess = function (position) {
+            /*alert('Latitude: ' + position.coords.latitude + '\n' +
+                'Longitude: ' + position.coords.longitude + '\n' +
+                'Altitude: ' + position.coords.altitude + '\n' +
+                'Accuracy: ' + position.coords.accuracy + '\n' +
+                'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+                'Heading: ' + position.coords.heading + '\n' +
+                'Speed: ' + position.coords.speed + '\n' +
+                'Timestamp: ' + position.timestamp + '\n'); */
+            const lat = position.coords.latitude,
+            lng = position.coords.longitude ;
+            return getRestaurants(lat, lng)
+            
+        
+        };
+
+        // onError Callback receives a PositionError object
+        //
+        function onError(error) {
+            alert('code: ' + error.code + '\n' +
+                'message: ' + error.message + '\n');
+        }
+
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+        function getWeatherLocation() {
+
+            navigator.geolocation.getCurrentPosition(onWeatherSuccess, onWeatherError, {
+                enableHighAccuracy: true
+            });
+        }
+        // Success callback for get geo coordinates
+
+var onWeatherSuccess = function (position) {
+
+    const Latitude = position.coords.latitude;
+    const Longitude = position.coords.longitude;
+//alert(Latitude, Longitude);
+    getWeather(Latitude, Longitude);
+    getRestaurants(Latitude, Longitude);
+}
+
+// Get weather by using coordinates
+
+function getWeather(latitude, longitude) {
+
+    // Get a free key at http://openweathermap.org/. Replace the "Your_Key_Here" string with that key.
+    var OpenWeatherAppKey = "509be5aa136b977116c175d7f802e307";
+    var GoogleAPIKey = "AIzaSyC0fvZSwmE-Cd_RFb6r60MGrNH1_56NNdw";
+
+    var queryString =
+      'http://api.openweathermap.org/data/2.5/weather?lat='+ latitude+'&lon='+longitude+'&appid=509be5aa136b977116c175d7f802e307&units=imperial';
+
+    $.getJSON(queryString, function (results) {
+
+        if (results.weather.length) {
+
+            $.getJSON(queryString, function (results) {
+
+                if (results.weather.length) {
+
+                    $('#broke').html("<h1>"+results.name+"</h1>");
+                    $('#try').html("<h4>"+Math.round((results.main.temp-32)*(5/9)) +" °C</h4>");
+                    $('#wind').html("<h4>"+results.wind.speed+" Speed</h4>");
+                    $('#try1').html("<h4>"+results.main.humidity+"  Humidity</h4>");
+                    $('#try2').html("<h4>"+results.weather[0].main+"</h4>");
+                    $('#clouds').html("<h4>"+results.clouds.all+" Clouds </h4>");
+
+                    var sunriseDate = new Date(results.sys.sunrise);
+                    $('#try3').html("<h4>"+sunriseDate.toLocaleTimeString()+"</h4>");
+
+                    var sunsetDate = new Date(results.sys.sunset);
+                    $('#try4').html("<h4>"+sunsetDate.toLocaleTimeString()+"</h4>");
+                }
+
+            });
+        }
+    }).fail(function () {
+        console.log("error getting location");
+    });
+}
+
+// Error callback
+
+function onWeatherError(error) {
+    console.log('code: ' + error.code + '\n' +
+        'message: ' + error.message + '\n');
+}
+        
+function getRestaurants(latitude, longitude) {
+    console.log("is it working");
+
+    // Get a free key at http://openweathermap.org/. Replace the "Your_Key_Here" string with that key.
+   
+    var GoogleAPIKey = "AIzaSyC0fvZSwmE-Cd_RFb6r60MGrNH1_56NNdw";
+//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&types=restaurants&name=restaurants&key=AIzaSyAsK6Hq7fDOmBBPsSfAXEwDERIKTDWrR0g
+    var queryString =
+      'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+ latitude + ',' + longitude + '&radius=500&types=restaurants&name=restaurants&key=AIzaSyC0fvZSwmE-Cd_RFb6r60MGrNH1_56NNdw';
+
+    $.getJSON(queryString, function (data) {
+        
+        console.log(data.results[0].name)
+        data.results.map(function(val){
+            $('#place').append(`<h3> ${val.name} <br> ${val.vicinity},<br> ${val.types[0]} </h3><br><br>`);
+           
+        })
+
+ 
+    }).fail(function () {
+        console.log("error getting location");
+    });
+}
+
+		$(document).on("pagecreate", "#distPage", function() {
+		    console.log("distancepage created");
+		    fetchDistance();
+		})
+
+		$(document).on("pagecreate", "#lunchPage", function() {
+			console.log("Lunchpage created");
+		    //Fetch lunch
+			fetchLunch();
+		})	
+        
+        $(document).on("pagecreate", "#weatherPage", function() {
+			console.log("Lunchpage created");
+		    //Fetch lunch
+            getWeatherLocation();
+        	//getWeather();
+		})
+        
+       
+        
+        $(document).on("pagecreate", "#home", function() {
+			console.log("close places created");
+		    //Fetch lunch
+			getRestaurants();
+		})
+		
+        function fetchLunch() {
+            $.ajax({
+                url: "http://www.amica.fi/modules/json/json/Index?costNumber=0083&language=en",
+                dataType: "json",
+                timeout: 5000
+            })
+            .done(function (data) {
+                var lunc = data.MenusForDays[0].SetMenus;
+                var text = "";
+                for (i = 0; i < lunc.length; i++) {
+                    text += "<li>" + lunc[i].Components + "</li>";
+                }
+                document.getElementById("lunch1").innerHTML = text;
+            })
+        }
+
+        function fetchDistance() {
+            var from = $("#from").val();
+            console.log(from);
+            var to = $("#to").val();
+            $.ajax({
+                url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=metrics&origins=" + from + "&destinations=" + to ,
+                dataType: "json",
+                timeout: 5000
+            })
+            .done(function(data){
+                $("#txe").attr("src", "https://maps.googleapis.com/maps/api/distancematrix/json?units=metrics&origins=" + from + "&destinations=" + to);
+                $("#txe").html("Distance is " + data.rows[0].elements[0].distance.text + " and estimated time " + data.rows[0].elements[0].duration.text);
+              
+            })
+        }
+        
+       function makePic(){
+        $("#camBtn").on("click", getImage);
+                        
+        function getImage() {
+            navigator.camera.getPicture(onSuccess, onFail, { quality: 25,
+            destinationType: Camera.DestinationType.FILE_URI });                           
+        }
+    
+        
+        function onSuccess(imageURI) {
+            var image = document.getElementById('pic');
+            image.src = "data:image/jpeg;base64," + imageURI;              
+        }
+
+        function onFail(message) {
+            alert('Failed because: ' + message);
+        }
+   } makePic();     
+    
+         
+    </script>
+
+</body>
+
+</html>

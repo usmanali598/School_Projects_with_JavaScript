@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/aikido.css">
+<head>
+	<meta charset="UTF-8">
+	<title>Learning Techniques</title>
+	
+<script src="https://code.jquery.com/jquery-3.1.0.slim.min.js"   integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8="   crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div id="container">
+
+<div style="margin-top:10px; margin-left:20px;"><a href="menu.html"><img src="pics/back.png" alt="icon" 
+style="width:50px;
+ height:40px;"/></a>
+<div id="int" style="width:300px;
+ height:20px; 
+ margin-top:40px;
+ background-color:rgb(51, 153, 255);
+ color:white;
+ text-align:center;
+ border-bottom:1px black solid;
+ border-top:1px black solid; ">
+Learning Techniques</div><br />
+
+<input type="text" 
+id="srch" 
+name="search" 
+placeholder="Type 'aikido,punching,karate or kongfu'" 
+style="width:250px; 
+height:20px; 
+border-left: 3px solid blue;
+background-color: white;"/><br /><br />
+
+<button id='btn'>Ok</button>
+<br />
+<marquee loop=1>
+    Loading...
+  </marquee>
+<br />
+<p id="tx"></p>
+
+<div class="allvidz" style="visibility:visible;">
+<div id="aikido" style="visibility:hidden;">
+<h2>aikido</h2>
+<iframe width="160px" height="160px" src="https://www.youtube.com/embed/63ENGr82p0o" frameborder="0" allowfullscreen></iframe>
+<iframe width="160px" height="160px" src="https://www.youtube.com/embed/ZVDV_4xDh4o" frameborder="0" allowfullscreen></iframe>
+<iframe width="160px" height="160px" src="https://www.youtube.com/embed/uMz20Z16HFU" frameborder="0" allowfullscreen></iframe>
+<iframe width="160px" height="160px" src="https://www.youtube.com/embed/L6rDSzdOyLM" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div id="punching" style="visibility:hidden;">
+<h2>punching</h2>
+<iframe width="160px" height="160px" src="https://www.youtube.com/embed/glD57ZHWDrA" frameborder="0" allowfullscreen></iframe>
+<iframe width="160px" height="160px" src="https://www.youtube.com/embed/_JSmPHEs2UM" frameborder="0" allowfullscreen></iframe>
+<iframe width="160px" height="160px" src="https://www.youtube.com/embed/hq0tGu27SmE" frameborder="0" allowfullscreen></iframe>
+<iframe width="160px" height="160px" src="https://www.youtube.com/embed/qSX0PCQXiO4" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div id="karate" style="visibility:hidden;">
+<h2>karate</h2>
+<iframe width="160px" height="160px" src="https://www.youtube.com/embed/CvnAzMijgD8" frameborder="0" allowfullscreen></iframe>
+<iframe width="160px" height="160px" src="https://www.youtube.com/embed/DwHnpNswopY" frameborder="0" allowfullscreen></iframe>
+<iframe width="160px" height="160px" src="https://www.youtube.com/embed/XTnf9xBNESU" frameborder="0" allowfullscreen></iframe>
+<iframe width="160px" height="160px" src="https://www.youtube.com/embed/9WLH3jheBZc" frameborder="0" allowfullscreen></iframe>
+</div>
+<div id="kongfu" style="visibility:hidden;">
+<h2>kongfu</h2>
+<iframe width="160px" height="160px" src="https://www.youtube.com/embed/fishf6nU0sc" frameborder="0" allowfullscreen></iframe>
+<iframe width="160px" height="160px" src="https://www.youtube.com/embed/rHDgfqEjG2I" frameborder="0" allowfullscreen></iframe>
+<iframe width="160px" height="160px" src="https://www.youtube.com/embed/a5iPeRug70o" frameborder="0" allowfullscreen></iframe>
+<iframe width="160px" height="160px" src="https://www.youtube.com/embed/a3sqfYCMCN4" frameborder="0" allowfullscreen></iframe>
+</div>
+	</div>
+
+<script type="text/javascript">
+
+	<!-- var val = $('#srch')[0].value;
+	
+	//if(val != "aikido" || val != "punching" || val != "karate" || val !="kongfu")
+	 -->
+	$(function(){
+		$('#btn').on('click', function(){
+			myFunction()
+		});
+		function myFunction(){
+			var val = $('#srch')[0].value;
+			if(val == 'aikido'){
+				$('#aikido')[0].style.visibility = 'visible';
+			} else if (val == 'punching') {
+				$('#punching')[0].style.visibility = 'visible';
+			} else if (val == 'karate') {
+				$('#karate')[0].style.visibility = 'visible';
+			} else if (val == 'kongfu') {
+				$('#kongfu')[0].style.visibility = 'visible';
+		} 	
+		}
+	});
+	</script>
+</body>
+</html>

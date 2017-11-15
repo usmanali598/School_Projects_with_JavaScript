@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+	<script type="text/javascript" src="jquery.min.js"></script>
+</head>
+
+<body>
+<div id="container" style="width:400px; padding:15px; margin:auto;">
+	<div id="header" style="background:url(pic.png); background-repeat:no-repeat;">
+		<div class="left">
+			<h1 id="currentLocation">Getting Location</h1>
+		</div>
+
+		<div class="right">Built with <i class="fa fa-heart"></i> by Usman</div>	
+
+		<div class="content-body">
+			<p class="center-text" id="tempIcon"></p>
+			<h2 class="center-text content-title" id="tempText"></h2>
+		</div>
+		</div>
+		<hr>
+		<h3>ToDo List</h3>
+		<div id="contentWrapper">
+			<article id="mainContent">
+
+				<div id="container1" class="panel panel-primary">
+					<div class="panel-heading">What you want to do?</div>
+					<ol id="theList" class="panel-body" contenteditable="true">
+						<li style="width:80%; margin:auto; color:green; font-size:15px; ">Enjoy life :)</li>
+					</ol>
+					<p><a href=javascript:void(); id="saveAll" class="btn btn-primary">Save All</a> &bull; <a href=javascript:void(); id="clearAll" class="btn btn-danger">Clear All</a></p>
+				</div>
+			</article>
+			<hr>
+			<!--<div role="main" class="ui-content ui-body-a">
+				<h1> Lunch </h1>
+				<p id="lunch1"></p>
+			</div>-->
+		</div>
+		<script>
+			$( document ).ready( function ()
+			{
+				var theList = document.getElementById( 'theList' );
+				$( "#saveAll" ).click( function ( e )
+				{
+					e.preventDefault();
+					localStorage.setItem( 'todoList', theList.innerHTML );
+				} );
+				$( "#clearAll" ).click( function ( e )
+				{
+					e.preventDefault();
+					localStorage.clear();
+					location.reload();
+				} );
+
+				loadToDo();
+
+				function loadToDo()
+				{
+					if ( localStorage.getItem( 'todoList' ) )
+					{
+						theList.innerHTML = localStorage.getItem( 'todoList' );
+					}
+				}
+			} );
+
+			/* fetchLunch();
+			{
+				$.ajax( {
+					url: "http://www.amica.fi/modules/json/json/Index?costNumber=0083&language=en",
+					dataType: "json",
+					timeout: 5000
+				} )
+					.done( function ( data )
+					{
+						var lunc = data.MenusForDays[ 0 ].SetMenus;
+						var text = "";
+						for ( i = 0; i < lunc.length; i++ )
+						{
+							text += "<li>" + lunc[ i ].Components + "</li>";
+						}
+						document.getElementById( "lunch1" ).innerHTML = text;
+					} )
+			} */
+		</script>
+</body>
+
+</html>

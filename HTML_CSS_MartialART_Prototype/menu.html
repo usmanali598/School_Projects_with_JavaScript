@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="jquery.js"></script>
+	
+  <link rel="stylesheet" type="text/css" href="css/menu.css">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+
+
+</style>
+</head>
+<body>
+<div id="container" >
+<div style="margin-top:10px; ">
+<a href="setting.html"><img src="pics/setting.png" alt="icon" 
+style="width:50px; 
+height:50px;
+float:left;"/></a>
+<a href="index.html"><img src="pics/button_power.png" alt="icon" 
+style="float:right;
+width:50px; 
+height:50px;"/></a>
+</div>
+<br />
+<br />
+<br />
+<div id="int" style="width:200px; margin-top:80px; 
+margin-left:100px; ">
+<br />
+<a href="schedule.html" style="text-decoration:none; color:black;">
+<button class="button button1">My Schedule</button>
+</a>
+<br />
+<br />
+<img src="pics/calendar.png" alt="" id="imag" />
+<a href="events.html"><button class="button button2">Up Coming events</button></a>
+<br />
+<br />
+<img src="pics/kicking.png" alt="" id="imag"/>
+<a href="learning.html" ><button class="button button3">Learning Techniques</button></a>
+<br />
+<br />
+<img src="pics/graduation.png" alt="" id="imag">
+<a href="requirements.html" ><button class="button button4">Graduation Requirements</button></a>
+<br />
+<br />
+
+<pre><button id="btn"> PressMe</button>   <span id="num" style="visibility:hidden;">3278001</span>
+
+</pre>
+	</div>
+	<script type="text/javascript">
+$(document).ready(function(){
+	$('#btn').click(function(){
+	$("#btn").text("again");
+	 $("#num").slideToggle("slow");
+		$('#num').css("visibility","visible");
+		//$('#num').toggle(1000);
+		})
+	})
+	</script>
+</body>
+</html>
