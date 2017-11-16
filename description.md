@@ -1,6 +1,6 @@
-                       # Description Of School Projects
+# Description Of School Projects
 
-1. GoogleAPI's_CameraPlugins_forMobile
+### 1. GoogleAPI's_CameraPlugins_forMobile
 
 By using geolocation, Langitude and latitude value was acheived. After that, googleAPI key was 
 utilized to in url with Lang and Lat value. These helped to findout the location and
@@ -13,12 +13,12 @@ Fourth tab was about distance measurement. Google API was also used here so by g
 cities' names, distance was calculated in KMs and estimated travel time.
 Fifth tab was school lunch menu that was retrieved through amica API and showing them in list format.
 
-2. HTML_CSS_MartialART_Prototype
+### 2. HTML_CSS_MartialART_Prototype
 
 This is old fashioned static website just for making prototype of user experience project.
 HTML and CSS was mainly used. 
 
-3. PlanningApp_jquery_Mobile
+### 3. PlanningApp_jquery_Mobile
 
 Jquery mobile app using Jquery theme. Basically, it is an app for getting the information of current
 day, weather situation, Adding Todos and daily each day expenses.
@@ -29,7 +29,7 @@ it is using HTML attribute and Local storage so if todo lists are saved so it re
 after restarting the app ever. Add Expenses tab is to input expenses and add them, it will be automatically
 adding by pressing the button. If user want to clear all the expenses then clear button is there.
 
-4. TodoList with HTML & Local_Storage
+### 4. TodoList with HTML & Local_Storage
 
 Simplest TodoList app with HTML and local storage. It has the same information as added in number 3.
 So whenever user will open the page TODOs will be there even it was saved in local storage.
